@@ -3,107 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>American History \u2014 Complete Flashcard Deck</title>
+<title>American History — Complete Flashcard Deck</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #12100e;
-    --parchment: #f4ead0;
-    --parchment-mid: #e2d0a8;
-    --gold: #b8860b;
-    --gold-light: #d4a820;
-    --crimson: #7a1e1e;
-    --teal: #1a5c52;
-    --teal-light: #2a8c7e;
-    --shadow: rgba(18,16,14,0.4);
+    --ink: #1a0f00;
+    --parchment: #f5edd6;
+    --parchment-dark: #e8d9b5;
+    --sepia: #8b6914;
+    --sepia-light: #c4962a;
+    --red: #8b1a1a;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #0e0c0a;
+    background: var(--ink);
     background-image:
-      radial-gradient(ellipse at 10% 30%, #1e1408 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 70%, #0a1010 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 50%, #2d1a00 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, #1a0a00 0%, transparent 60%);
     min-height: 100vh;
     font-family: 'Crimson Pro', Georgia, serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 36px 20px 60px;
+    padding: 40px 20px;
     color: var(--ink);
   }
 
-  /* \u2500\u2500 HEADER \u2500\u2500 */
   header {
     text-align: center;
     margin-bottom: 28px;
     color: var(--parchment);
     width: 100%;
-    max-width: 760px;
+    max-width: 720px;
   }
 
   header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+    font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 900;
-    color: var(--gold-light);
-    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    letter-spacing: 0.05em;
+    color: var(--sepia-light);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     line-height: 1.1;
-    letter-spacing: 0.04em;
   }
 
   header p {
-    margin-top: 6px;
+    margin-top: 8px;
     font-size: 1rem;
-    color: var(--parchment-mid);
+    color: var(--parchment-dark);
     font-style: italic;
-    opacity: 0.75;
+    opacity: 0.8;
   }
 
-  /* \u2500\u2500 ERA FILTER TABS \u2500\u2500 */
-  .era-tabs {
+  .filter-tabs {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
+    gap: 8px;
     justify-content: center;
-    max-width: 760px;
-    margin: 18px 0 10px;
+    max-width: 720px;
+    margin: 16px 0 8px;
   }
 
-  .era-tab {
-    padding: 5px 14px;
+  .tab {
+    padding: 5px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(212,168,32,0.35);
-    background: rgba(212,168,32,0.08);
-    color: var(--parchment-mid);
+    border: 1px solid rgba(196,150,42,0.4);
+    background: rgba(196,150,42,0.1);
+    color: var(--parchment-dark);
     font-family: 'Crimson Pro', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .era-tab:hover { background: rgba(212,168,32,0.22); }
-  .era-tab.active { background: var(--gold); color: #0e0c0a; font-weight: 600; border-color: var(--gold-light); }
+  .tab:hover { background: rgba(196,150,42,0.25); }
+  .tab.active { background: var(--sepia); color: var(--parchment); border-color: var(--sepia-light); font-weight: 600; }
 
-  /* \u2500\u2500 PROGRESS \u2500\u2500 */
-  .progress-wrap {
+  .progress-bar-wrap {
     width: 100%;
-    max-width: 760px;
-    margin: 12px 0 4px;
-  }
-
-  .progress-bar-track {
-    background: rgba(255,255,255,0.07);
+    max-width: 720px;
+    background: rgba(255,255,255,0.1);
     border-radius: 4px;
-    height: 5px;
+    height: 6px;
+    margin: 14px 0 0;
     overflow: hidden;
   }
 
   .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--teal), var(--gold-light));
+    background: linear-gradient(90deg, var(--sepia), var(--sepia-light));
     border-radius: 4px;
     transition: width 0.4s ease;
   }
@@ -111,57 +102,60 @@
   .progress-info {
     display: flex;
     justify-content: space-between;
+    max-width: 720px;
+    width: 100%;
     margin-top: 5px;
-    font-size: 0.82rem;
-    color: var(--parchment-mid);
-    opacity: 0.6;
   }
 
-  /* \u2500\u2500 DOT NAV \u2500\u2500 */
+  .counter {
+    color: var(--parchment-dark);
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+
   .term-dots {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 7px;
     justify-content: center;
-    max-width: 760px;
-    margin: 14px 0 18px;
+    max-width: 720px;
+    margin: 16px 0 18px;
   }
 
   .dot {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background: rgba(212,168,32,0.1);
-    border: 1px solid rgba(212,168,32,0.3);
+    background: rgba(139,105,20,0.2);
+    border: 1px solid rgba(139,105,20,0.4);
     cursor: pointer;
-    transition: all 0.18s;
-    font-size: 0.67rem;
-    color: var(--parchment-mid);
+    transition: all 0.2s;
+    font-size: 0.72rem;
+    color: var(--parchment-dark);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Crimson Pro', serif;
   }
 
-  .dot:hover { background: rgba(212,168,32,0.3); transform: scale(1.12); }
-  .dot.active { background: var(--gold); color: #0e0c0a; border-color: var(--gold-light); font-weight: 700; }
-  .dot.seen { border-color: var(--teal-light); color: var(--teal-light); }
-  .dot.filtered-out { opacity: 0.18; pointer-events: none; }
+  .dot:hover { background: rgba(139,105,20,0.4); transform: scale(1.1); }
+  .dot.active { background: var(--sepia); color: white; border-color: var(--sepia-light); font-weight: 700; }
+  .dot.seen { border-color: var(--sepia); color: var(--sepia-light); }
+  .dot.hidden { opacity: 0.15; pointer-events: none; }
 
-  /* \u2500\u2500 CARD \u2500\u2500 */
   .card-wrapper {
     width: 100%;
-    max-width: 760px;
-    perspective: 1500px;
-    margin-bottom: 24px;
+    max-width: 720px;
+    perspective: 1400px;
+    margin-bottom: 28px;
   }
 
   .card {
     position: relative;
     width: 100%;
-    min-height: 540px;
+    min-height: 520px;
     transform-style: preserve-3d;
-    transition: transform 0.72s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
     cursor: pointer;
   }
 
@@ -171,30 +165,31 @@
     position: absolute;
     inset: 0;
     backface-visibility: hidden;
-    border-radius: 14px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 28px 70px rgba(0,0,0,0.65), 0 6px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4);
   }
 
-  /* FRONT */
   .card-front {
     background: var(--parchment);
-    background-image: linear-gradient(148deg, #faf2da 0%, var(--parchment) 55%, #dfd0a8 100%);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E"),
+      linear-gradient(135deg, #f9f0d8 0%, var(--parchment) 50%, #ede0bf 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 52px 44px 44px;
-    border: 3px solid var(--gold);
+    padding: 48px 40px;
+    border: 3px solid var(--sepia);
     position: absolute;
   }
 
   .card-front::before {
     content: '';
     position: absolute;
-    inset: 10px;
-    border: 1px solid rgba(184,134,11,0.22);
-    border-radius: 9px;
+    inset: 8px;
+    border: 1px solid rgba(139,105,20,0.3);
+    border-radius: 8px;
     pointer-events: none;
   }
 
@@ -203,12 +198,15 @@
     top: 18px;
     right: 18px;
     font-size: 0.62rem;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 3px 11px;
     border-radius: 20px;
     font-weight: 600;
     font-family: 'Crimson Pro', serif;
+    background: rgba(139,105,20,0.15);
+    color: var(--sepia);
+    border: 1px solid rgba(139,105,20,0.35);
   }
 
   .set-badge {
@@ -224,65 +222,64 @@
     font-family: 'Crimson Pro', serif;
   }
 
-  .badge-set1 { background: rgba(122,30,30,0.18); color: var(--crimson); border: 1px solid rgba(122,30,30,0.35); }
-  .badge-set2 { background: rgba(26,92,82,0.18); color: var(--teal-light); border: 1px solid rgba(26,92,82,0.4); }
+  .set1 { background: rgba(139,26,26,0.12); color: #8b1a1a; border: 1px solid rgba(139,26,26,0.3); }
+  .set2 { background: rgba(26,92,82,0.12); color: #1a7a6e; border: 1px solid rgba(26,92,82,0.3); }
 
   .term-number {
-    font-size: 0.8rem;
-    color: var(--gold);
-    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    color: var(--sepia);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     font-weight: 600;
   }
 
   .term-emoji {
-    font-size: 3.8rem;
-    margin-bottom: 18px;
-    filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.18));
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
   }
 
   .term-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.45rem, 3.5vw, 2.2rem);
+    font-size: clamp(1.5rem, 3.8vw, 2.3rem);
     font-weight: 700;
     color: var(--ink);
     text-align: center;
-    line-height: 1.25;
-    margin-bottom: 14px;
+    line-height: 1.2;
+    margin-bottom: 20px;
   }
 
   .flip-hint {
     margin-top: 20px;
-    font-size: 0.8rem;
-    color: var(--gold);
+    font-size: 0.82rem;
+    color: var(--sepia);
     font-style: italic;
-    opacity: 0.6;
+    opacity: 0.65;
   }
 
-  /* BACK */
   .card-back {
-    background: #111008;
-    background-image: linear-gradient(158deg, #1c1608 0%, #0c0c0a 100%);
+    background: #1e1208;
+    background-image: linear-gradient(160deg, #2a1a08 0%, #1a0e04 100%);
     transform: rotateY(180deg);
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--gold);
+    border: 2px solid var(--sepia);
   }
 
   .back-header {
-    background: linear-gradient(90deg, #7a5208, #b8860b, #d4a820, #b8860b, #7a5208);
+    background: linear-gradient(90deg, var(--sepia), var(--sepia-light), var(--sepia));
     padding: 11px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  .back-term-name {
+  .back-header .term-name {
     font-family: 'Playfair Display', serif;
-    color: #0e0c0a;
+    color: var(--parchment);
     font-size: 1rem;
     font-weight: 700;
     flex: 1;
@@ -291,11 +288,343 @@
   .back-era-tag {
     font-size: 0.6rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 2px 9px;
     border-radius: 12px;
-    background: rgba(0,0,0,0.25);
-    color: #fff8e0;
+    background: rgba(0,0,0,0.22);
+    color: #fff5d0;
+    margin-left: 10px;
     white-space: nowrap;
-    
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .section {
+    padding: 14px 16px;
+    border-right: 1px solid rgba(139,105,20,0.25);
+    border-bottom: 1px solid rgba(139,105,20,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+  }
+
+  .section:nth-child(2) { border-right: none; }
+  .section:nth-child(4) { border-right: none; }
+  .section:nth-child(3), .section:nth-child(4) { border-bottom: none; }
+
+  .section-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .label-def { color: #c49a3c; }
+  .label-3c1 { color: #7fb3a0; }
+  .label-3c2 { color: #a07fb3; }
+  .label-img { color: #b3a07f; }
+
+  .section-content {
+    font-size: 0.87rem;
+    line-height: 1.52;
+    color: #e8d9b5;
+    font-weight: 300;
+    overflow: hidden;
+  }
+
+  .section-content em {
+    color: var(--sepia-light);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .symbol-display {
+    font-size: 2.8rem;
+    text-align: center;
+    padding: 6px 0;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  }
+
+  .symbol-caption {
+    font-size: 0.78rem;
+    color: #b09060;
+    font-style: italic;
+    text-align: center;
+  }
+
+  .nav {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    background: rgba(139,105,20,0.15);
+    border: 1px solid var(--sepia);
+    color: var(--parchment);
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    padding: 10px 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-btn:hover {
+    background: var(--sepia);
+    color: var(--parchment);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(139,105,20,0.4);
+  }
+
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+  .flip-btn {
+    background: linear-gradient(135deg, var(--red), #6b1111);
+    border-color: #a02020;
+    font-weight: 600;
+    padding: 10px 34px;
+  }
+
+  .flip-btn:hover { background: linear-gradient(135deg, #a02020, var(--red)); }
+
+  .kb-hint {
+    font-size: 0.72rem;
+    color: var(--parchment-dark);
+    opacity: 0.35;
+    font-style: italic;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>American History<br>Complete Study Deck</h1>
+  <p>Manifest Destiny → Reconstruction → Gilded Age → Progressive Era &nbsp;·&nbsp; 40 Cards</p>
+</header>
+
+<div class="filter-tabs">
+  <div class="tab active" onclick="setFilter('all', this)">All 40</div>
+  <div class="tab" onclick="setFilter(1, this)">Set 1 — Civil War Era (1–20)</div>
+  <div class="tab" onclick="setFilter(2, this)">Set 2 — Gilded Age &amp; Beyond (21–40)</div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progressBar" style="width:2.5%"></div>
+</div>
+<div class="progress-info">
+  <span class="counter" id="counter">Card 1 of 40</span>
+  <span class="counter" id="seenCount">0 reviewed</span>
+</div>
+
+<div class="term-dots" id="termDots"></div>
+
+<div class="card-wrapper">
+  <div class="card" id="flashcard" onclick="flipCard()">
+    <div class="card-face card-front">
+      <div class="set-badge set1" id="setBadge">Set 1</div>
+      <div class="era-badge" id="eraBadge">Era</div>
+      <div class="term-number" id="termNumber">Term 01</div>
+      <div class="term-emoji" id="termEmoji">🌅</div>
+      <div class="term-title" id="termTitle">Loading...</div>
+      <div class="flip-hint">&#8635; Click to reveal</div>
+    </div>
+    <div class="card-face card-back">
+      <div class="back-header">
+        <span class="term-name" id="backTitle">Loading...</span>
+        <span class="back-era-tag" id="backEra">Era</span>
+      </div>
+      <div class="sections-grid">
+        <div class="section">
+          <div class="section-label label-def">&#128220; Definition</div>
+          <div class="section-content" id="definition">Loading...</div>
+        </div>
+        <div class="section">
+          <div class="section-label label-img">&#127912; Symbol</div>
+          <div class="symbol-display" id="symbolEmoji">&#11088;</div>
+          <div class="symbol-caption" id="symbolCaption">Loading...</div>
+        </div>
+        <div class="section">
+          <div class="section-label label-3c1" id="label3c1">3C Part 1</div>
+          <div class="section-content" id="threeC1">Loading...</div>
+        </div>
+        <div class="section">
+          <div class="section-label label-3c2" id="label3c2">3C Part 2</div>
+          <div class="section-content" id="threeC2">Loading...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn" id="prevBtn" onclick="changeCard(-1)" disabled>&#8592; Prev</button>
+  <button class="nav-btn flip-btn" onclick="flipCard()">Flip Card</button>
+  <button class="nav-btn" id="nextBtn" onclick="changeCard(1)">Next &#8594;</button>
+</div>
+<div class="kb-hint">Arrow keys to navigate &nbsp;|&nbsp; Space to flip</div>
+
+<script>
+var terms = [
+  {set:1,era:"Expansion",title:"Manifest Destiny",emoji:"\uD83C\uDF05",definition:"The 19th-century belief that American settlers were <em>divinely destined</em> to expand across the North American continent from coast to coast.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Economic ambition, nationalist pride, and religious ideology drove Americans to believe expansion was God-given and inevitable.",part2Label:"Effect",part2:"<em>Effect:</em> Led to wars (Mexican-American War), displacement of Native peoples, and acquisition of vast western territories.",symbol:"\uD83D\uDDFA\uFE0F",symbolCaption:"A map expanding westward — boundless frontier"},
+  {set:1,era:"Expansion",title:"Mexican-American War",emoji:"\u2694\uFE0F",definition:"An armed conflict (1846–1848) between the United States and Mexico, triggered by <em>annexation of Texas</em> and border disputes, resulting in U.S. gain of vast southwestern territory.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> U.S. annexation of Texas (1845) and dispute over the Rio Grande border provoked hostilities with Mexico.",part2Label:"Effect",part2:"<em>Effect:</em> The Mexican Cession gave the U.S. California, New Mexico, and more — reigniting the slavery debate.",symbol:"\uD83C\uDFF3\uFE0F",symbolCaption:"A flag of contested territory"},
+  {set:1,era:"Expansion",title:"Mexican Cession",emoji:"\uD83C\uDF0E",definition:"The <em>Mexican Cession</em> (1848) transferred over 500,000 sq. miles from Mexico to the U.S. via the Treaty of Guadalupe Hidalgo after the Mexican-American War.",threeC:"Compare & Contrast",part1Label:"Similarity",part1:"<em>Both</em> Manifest Destiny and the Mexican Cession reflected American expansionism and belief in continental dominance.",part2Label:"Difference",part2:"<em>Manifest Destiny</em> was ideological; <em>Mexican Cession</em> was a concrete legal transfer of land that intensified slavery debates.",symbol:"\uD83D\uDCDC",symbolCaption:"Treaty of Guadalupe Hidalgo, 1848"},
+  {set:1,era:"Antebellum",title:"Compromise of 1850",emoji:"\uD83E\uDD1D",definition:"A series of five laws that <em>temporarily eased tensions</em> between free and slave states, admitting California as free but strengthening the Fugitive Slave Act.",threeC:"Continuity & Change Over Time",part1Label:"Continuity",part1:"<em>Continuity:</em> Congress continued trying to use legislative compromise to preserve the Union, as it had with the Missouri Compromise (1820).",part2Label:"Change",part2:"<em>Change:</em> The harsh Fugitive Slave Act turned Northern public opinion against slavery, hardening sectional divisions.",symbol:"\u2696\uFE0F",symbolCaption:"Scales of an uneasy balance"},
+  {set:1,era:"Antebellum",title:"Kansas-Nebraska Act",emoji:"\uD83C\uDF3E",definition:"1854 law that created Kansas and Nebraska territories, allowing <em>popular sovereignty</em> to decide slavery — effectively repealing the Missouri Compromise.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Senator Stephen Douglas pushed popular sovereignty to organize western territories and build a transcontinental railroad route.",part2Label:"Effect",part2:"<em>Effect:</em> Sparked 'Bleeding Kansas' violence, destroyed the Second Party System, and fueled the rise of the Republican Party.",symbol:"\uD83E\uDE78",symbolCaption:"'Bleeding Kansas' — frontier violence"},
+  {set:1,era:"Antebellum",title:"Dred Scott Decision",emoji:"\u2696\uFE0F",definition:"The 1857 Supreme Court ruling that <em>enslaved people were property, not citizens</em>, and that Congress had no power to ban slavery in territories.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Dred Scott sued for freedom after living in free territories, forcing the Court to rule on citizenship and congressional authority.",part2Label:"Effect",part2:"<em>Effect:</em> Outraged abolitionists and Northerners, boosted the Republican Party, and pushed the nation closer to civil war.",symbol:"\uD83D\uDD28",symbolCaption:"A gavel that denied humanity"},
+  {set:1,era:"Antebellum",title:"Republican Party",emoji:"\uD83E\uDD85",definition:"Founded in 1854, the Republican Party united <em>anti-slavery Whigs, Free-Soilers, and Democrats</em> opposed to the spread of slavery into new territories.",threeC:"Continuity & Change Over Time",part1Label:"Continuity",part1:"<em>Continuity:</em> Like the Whigs before them, Republicans supported federal economic development and opposed Democratic slaveholder power.",part2Label:"Change",part2:"<em>Change:</em> Unlike any major party before, Republicans explicitly opposed the <em>expansion</em> of slavery, making them a purely sectional Northern party.",symbol:"\uD83D\uDC18",symbolCaption:"The elephant — symbol of the GOP"},
+  {set:1,era:"Civil War",title:"Election of 1860",emoji:"\uD83D\uDDF3\uFE0F",definition:"Presidential election won by <em>Abraham Lincoln</em> without a single Southern electoral vote, signaling to the South that slaveholder political dominance had ended.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> The Democratic Party split between Northern (Douglas) and Southern (Breckinridge) candidates, allowing Lincoln to win with only Northern votes.",part2Label:"Effect",part2:"<em>Effect:</em> Seven Southern states seceded before Lincoln was inaugurated, triggering the Civil War.",symbol:"\uD83C\uDFA9",symbolCaption:"Lincoln's iconic stovepipe hat"},
+  {set:1,era:"Civil War",title:"Secession of Southern States",emoji:"\uD83D\uDD17",definition:"Beginning in December 1860, eleven Southern states <em>withdrew from the Union</em>, claiming states' rights and the right to protect slavery.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Lincoln's election convinced Southern leaders the federal government would restrict and eventually abolish slavery.",part2Label:"Effect",part2:"<em>Effect:</em> Formation of the Confederate States of America and the outbreak of the Civil War at Fort Sumter (April 1861).",symbol:"\uD83D\uDC94",symbolCaption:"A nation torn in two"},
+  {set:1,era:"Civil War",title:"The Civil War",emoji:"\uD83D\uDD25",definition:"The war (1861–1865) between the <em>Union</em> and the <em>Confederacy</em> over secession and slavery — the deadliest conflict in American history.",threeC:"Compare & Contrast",part1Label:"The Union",part1:"<em>Union:</em> Fought to preserve the nation; industrialized North with larger population, navy, and rail network.",part2Label:"The Confederacy",part2:"<em>Confederacy:</em> Fought for independence and to protect slavery; relied on defensive strategy and Southern military leadership.",symbol:"\u2694\uFE0F",symbolCaption:"Blue vs. Gray — brother against brother"},
+  {set:1,era:"Civil War",title:"Emancipation Proclamation",emoji:"\uD83D\uDD4A\uFE0F",definition:"President Lincoln's 1863 executive order declaring <em>enslaved people in Confederate states free</em>, transforming the war into a battle for human liberation.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Lincoln issued it after the Union victory at Antietam, needing a moral purpose to prevent British recognition of the Confederacy.",part2Label:"Effect",part2:"<em>Effect:</em> Allowed Black men to enlist in the Union Army (180,000+ soldiers) and reframed the war's purpose worldwide.",symbol:"\uD83D\uDCDC",symbolCaption:"The document that changed everything"},
+  {set:1,era:"Reconstruction",title:"13th Amendment",emoji:"\u26D3\uFE0F",definition:"Ratified in 1865, this constitutional amendment <em>abolished slavery</em> throughout the United States, completing what the Emancipation Proclamation had begun.",threeC:"Continuity & Change Over Time",part1Label:"Continuity",part1:"<em>Continuity:</em> Abolitionist activism stretching back to the 1830s finally achieved its core goal through federal constitutional law.",part2Label:"Change",part2:"<em>Change:</em> For the first time in U.S. history, slavery was legally abolished everywhere — a radical transformation of American society.",symbol:"\uD83D\uDD13",symbolCaption:"Broken chains — freedom at last"},
+  {set:1,era:"Reconstruction",title:"14th Amendment",emoji:"\uD83C\uDFDB\uFE0F",definition:"Ratified in 1868, it granted <em>citizenship and equal protection under the law</em> to all persons born or naturalized in the United States, including formerly enslaved people.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Black Codes in the South denied rights to freedpeople, prompting Radical Republicans to enshrine citizenship in the Constitution.",part2Label:"Effect",part2:"<em>Effect:</em> Became the constitutional basis for nearly all major civil rights cases in the 20th century.",symbol:"\u2696\uFE0F",symbolCaption:"Equal justice under law"},
+  {set:1,era:"Reconstruction",title:"15th Amendment",emoji:"\uD83D\uDDF3\uFE0F",definition:"Ratified in 1870, this amendment granted <em>Black men the right to vote</em>, prohibiting states from denying suffrage based on race, color, or previous servitude.",threeC:"Compare & Contrast",part1Label:"Similarity to 14th",part1:"<em>Like the 14th</em>, the 15th Amendment was a Reconstruction-era effort by Radical Republicans to secure Black political equality.",part2Label:"Difference",part2:"<em>Unlike the 14th</em>, it directly addressed voting rights — but excluded women, fracturing the suffrage movement.",symbol:"\u270B",symbolCaption:"A hand raised to vote"},
+  {set:1,era:"Reconstruction",title:"Women's Rights & 15th Amendment",emoji:"\u270A",definition:"The 15th Amendment's exclusion of women caused a <em>split in the suffrage movement</em>, with some leaders refusing to support it while others accepted partial progress.",threeC:"Compare & Contrast",part1Label:"NWSA (Stanton/Anthony)",part1:"<em>Stanton & Anthony</em> opposed the 15th Amendment, arguing women deserved equal voting rights simultaneously.",part2Label:"AWSA (Stone)",part2:"<em>Lucy Stone's AWSA</em> supported the 15th Amendment as a step forward, willing to wait for women's suffrage.",symbol:"\u26BA",symbolCaption:"Suffragists at a crossroads"},
+  {set:1,era:"Reconstruction",title:"Reconstruction",emoji:"\uD83C\uDFD7\uFE0F",definition:"The period (1865–1877) in which the federal government attempted to <em>rebuild the South</em> and integrate formerly enslaved people into American civic life.",threeC:"Continuity & Change Over Time",part1Label:"Change",part1:"<em>Change:</em> Black men voted, held office, and built schools and churches; the South's political landscape was briefly transformed.",part2Label:"Continuity",part2:"<em>Continuity:</em> White supremacist violence (KKK) and economic dependence kept freedpeople in conditions resembling slavery.",symbol:"\uD83C\uDFDB\uFE0F",symbolCaption:"Rebuilding — but on unstable ground"},
+  {set:1,era:"Reconstruction",title:"Radical vs. Moderate Republicans",emoji:"\u26A1",definition:"<em>Radical Republicans</em> demanded Black civil rights and harsh treatment of the South; <em>Moderate Republicans</em> preferred lenient reunion without fully securing Black equality.",threeC:"Compare & Contrast",part1Label:"Radical Republicans",part1:"<em>Radicals</em> (Sumner, Stevens) demanded the 14th & 15th Amendments, military Reconstruction, and land redistribution for freedpeople.",part2Label:"Moderate Republicans",part2:"<em>Moderates</em> prioritized restoring the Union quickly over full Black equality, often compromising with Southern Democrats.",symbol:"\uD83D\uDD34",symbolCaption:"Two visions of a rebuilt nation"},
+  {set:1,era:"Reconstruction",title:"Sharecropping System",emoji:"\uD83C\uDF31",definition:"A post-war labor system where freed Black farmers <em>worked white-owned land in exchange for a share of crops</em>, trapping many in cycles of debt and poverty.",threeC:"Continuity & Change Over Time",part1Label:"Change",part1:"<em>Change:</em> Sharecropping replaced the plantation gang-labor system; freedpeople had nominal autonomy over their family's work schedule.",part2Label:"Continuity",part2:"<em>Continuity:</em> In practice, debt peonage and crop-lien systems kept Black families economically bound — a new form of servitude.",symbol:"\uD83C\uDF3E",symbolCaption:"Fields of broken promises"},
+  {set:1,era:"Immigration",title:"Irish & German Immigrants",emoji:"\uD83D\uDEA2",definition:"Waves of Irish (1840s famine) and German (1848 revolutions) immigrants <em>dramatically reshaped Northern cities</em>, labor markets, and cultural life before the Civil War.",threeC:"Compare & Contrast",part1Label:"Irish Immigrants",part1:"<em>Irish</em> fled famine, arrived in poverty, took dangerous labor jobs, and faced intense anti-Catholic discrimination from nativists.",part2Label:"German Immigrants",part2:"<em>Germans</em> brought capital and skills, settled Midwest farms, and many joined abolitionist and Republican causes.",symbol:"\u2693",symbolCaption:"Anchor in a new land"},
+  {set:1,era:"Reconstruction End",title:"Segregation",emoji:"\uD83D\uDEA7",definition:"The legal and social <em>separation of Black and white Americans</em> that arose after Reconstruction collapsed, enforced through Jim Crow laws and racial terror.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> The end of Reconstruction (1877) allowed Southern states to dismantle Black political gains through legislation and violence.",part2Label:"Effect",part2:"<em>Effect:</em> Separate and unequal schools, transportation, and public life were codified for nearly a century, reversed only by the Civil Rights Movement.",symbol:"\uD83D\uDEAB",symbolCaption:"Signs of a divided nation"},
+  {set:2,era:"Reconstruction End",title:"Black Codes / Jim Crow Laws",emoji:"\u26D4",definition:"Laws passed by Southern states to <em>restrict the freedom of Black Americans</em> after the Civil War, enforcing segregation and denying political and economic rights.",threeC:"Continuity & Change",part1Label:"Continuity",part1:"<em>Continuity:</em> Like slavery, Black Codes and Jim Crow maintained white supremacist social control and kept Black labor cheap and exploitable.",part2Label:"Change",part2:"<em>Change:</em> Shifted from outright enslavement to legal apartheid — segregation codified in Plessy v. Ferguson (1896) as 'separate but equal.'",symbol:"\uD83D\uDEAB",symbolCaption:"'Separate but equal' — separate, never equal"},
+  {set:2,era:"Gilded Age",title:"Compromise of 1877 / Hayes-Tilden",emoji:"\uD83E\uDD1D",definition:"The informal deal that resolved the disputed 1876 election by awarding the presidency to <em>Rutherford B. Hayes</em> in exchange for withdrawing federal troops from the South, ending Reconstruction.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> The 1876 election between Hayes and Tilden was disputed in three Southern states; Congress brokered a backroom deal to avoid crisis.",part2Label:"Effect",part2:"<em>Effect:</em> Federal troops left the South, Reconstruction collapsed, and Black civil rights were abandoned for nearly a century.",symbol:"\uD83C\uDFF3\uFE0F",symbolCaption:"The white flag of abandoned Reconstruction"},
+  {set:2,era:"Gilded Age",title:"Laissez-Faire",emoji:"\uD83C\uDFED",definition:"The economic philosophy that <em>government should not interfere</em> in business or the economy — the dominant ideology of the Gilded Age that allowed industrialists to accumulate enormous wealth.",threeC:"Compare & Contrast",part1Label:"Laissez-Faire View",part1:"<em>Laissez-faire advocates</em> (Carnegie, Rockefeller) argued free markets naturally rewarded the talented and efficient, lifting all boats.",part2Label:"Progressive Critique",part2:"<em>Progressives</em> countered that unregulated capitalism produced dangerous monopolies, child labor, and mass poverty — demanding government intervention.",symbol:"\uD83D\uDCB8",symbolCaption:"Invisible hand — or invisible harm?"},
+  {set:2,era:"Gilded Age",title:"Robber Barons / Captains of Industry",emoji:"\uD83C\uDFA9",definition:"Industrialists like <em>Rockefeller, Carnegie, Vanderbilt, and Morgan</em> who built massive business empires — celebrated as 'captains of industry' by some, condemned as 'robber barons' by critics for exploiting workers and crushing competition.",threeC:"Compare & Contrast",part1Label:"Captain of Industry",part1:"<em>Captains of Industry:</em> Viewed as innovators who built infrastructure, created jobs, and donated billions in philanthropy (Carnegie libraries).",part2Label:"Robber Baron",part2:"<em>Robber Barons:</em> Crushed unions, bribed politicians, and used monopolistic tactics to destroy competition and exploit workers.",symbol:"\uD83C\uDFE6",symbolCaption:"The gilded tower — built on others' backs"},
+  {set:2,era:"Gilded Age",title:"Vertical & Horizontal Integration",emoji:"\uD83D\uDD17",definition:"<em>Horizontal integration</em> means buying out competitors in the same industry (Rockefeller/Standard Oil). <em>Vertical integration</em> means controlling every stage of production (Carnegie Steel).",threeC:"Compare & Contrast",part1Label:"Horizontal Integration",part1:"<em>Horizontal:</em> Rockefeller bought rival oil refineries until Standard Oil controlled 90% of U.S. oil refining — eliminating competition.",part2Label:"Vertical Integration",part2:"<em>Vertical:</em> Carnegie controlled iron ore mines, coal fields, railroads, and steel mills — cutting costs by owning the entire supply chain.",symbol:"\u26D3\uFE0F",symbolCaption:"Chains of control — top to bottom"},
+  {set:2,era:"Gilded Age",title:"Sherman Anti-Trust Act (1890)",emoji:"\u2696\uFE0F",definition:"The first federal law to <em>limit monopolies and trusts</em>, declaring illegal any combination 'in restraint of trade.' Initially weakly enforced, it became TR's key weapon against big business.",threeC:"Continuity & Change",part1Label:"Continuity",part1:"<em>Continuity:</em> Congress had long debated how to regulate railroads and trusts; the Sherman Act was the first major federal attempt.",part2Label:"Change",part2:"<em>Change:</em> Under TR, the Act was actively used to break up Northern Securities Co. and Standard Oil — fundamentally shifting federal power over business.",symbol:"\uD83D\uDD28",symbolCaption:"The hammer of federal regulation"},
+  {set:2,era:"Native Americans",title:"Dawes Severalty Act (1887)",emoji:"\uD83C\uDF3E",definition:"Law that <em>broke up tribal lands</em> into individual 160-acre allotments for Native Americans, aiming to assimilate them into American society while opening 'surplus' land to white settlers.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Policy-makers believed tribal communal living prevented assimilation; 'reformers' thought individual land ownership would 'civilize' Native peoples.",part2Label:"Effect",part2:"<em>Effect:</em> Native Americans lost ~90 million acres (60% of remaining land); tribal cultures were devastated; poverty deepened on reservations.",symbol:"\uD83C\uDFF9",symbolCaption:"Forced assimilation — a cultural erasure"},
+  {set:2,era:"Native Americans",title:"Wounded Knee Massacre (1890)",emoji:"\u2744\uFE0F",definition:"The U.S. Army's killing of <em>approximately 250-300 Lakota Sioux</em> at Wounded Knee Creek, South Dakota — the last major violent confrontation of the Indian Wars.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> The Ghost Dance spiritual movement alarmed U.S. authorities; troops attempted to disarm Lakota camps and a gun discharge sparked a massacre.",part2Label:"Effect",part2:"<em>Effect:</em> Marked the symbolic end of Native resistance on the Plains and the closing of the frontier era.",symbol:"\uD83D\uDD4A\uFE0F",symbolCaption:"Peace promised — violence delivered"},
+  {set:2,era:"Frontier",title:"Homestead Act (1862)",emoji:"\uD83C\uDFE1",definition:"Federal law granting <em>160 acres of public land</em> to any citizen who would settle and farm it for five years — drawing hundreds of thousands of settlers westward.",threeC:"Compare & Contrast",part1Label:"Promise",part1:"<em>Promise:</em> Offered ordinary Americans a chance at land ownership and economic independence — 'free land' for hard work.",part2Label:"Reality",part2:"<em>Reality:</em> Harsh climate, drought, and debt crushed many settlers; large land speculators and railroads acquired far more land than small farmers.",symbol:"\uD83C\uDF3B",symbolCaption:"The promise of the Great Plains"},
+  {set:2,era:"Railroad & West",title:"Transcontinental Railroad",emoji:"\uD83D\uDE82",definition:"The <em>first railroad linking the Atlantic and Pacific coasts</em>, completed in 1869 at Promontory Point, Utah — built by the Union Pacific (Irish labor) and Central Pacific (Chinese labor).",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Government land grants and loans subsidized construction; competition between UP and CP drove a race to lay track.",part2Label:"Effect",part2:"<em>Effect:</em> Unified the national market, enabled cattle ranching and farming on the Plains, and accelerated Native displacement.",symbol:"\uD83D\uDD29",symbolCaption:"The golden spike — nation connected"},
+  {set:2,era:"Labor",title:"Pullman Strike (1894)",emoji:"\u270A",definition:"A nationwide railroad strike led by <em>Eugene V. Debs</em> and the American Railroad Union after Pullman Palace Car Co. cut wages without reducing rents in company towns.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> The 1893 depression led Pullman to slash wages 25-40% while keeping high rents and prices in company-owned housing.",part2Label:"Effect",part2:"<em>Effect:</em> President Cleveland used federal injunctions and troops to crush the strike; Debs was jailed and became a socialist, shaping the labor movement.",symbol:"\uD83D\uDE83",symbolCaption:"A nation's trains — stopped by solidarity"},
+  {set:2,era:"Labor",title:"Knights of Labor / AFL",emoji:"\u2699\uFE0F",definition:"Two major labor organizations: the <em>Knights of Labor</em> (1869) welcomed all workers including women and Black workers; the <em>AFL</em> (1886) under Gompers focused on skilled craft workers.",threeC:"Compare & Contrast",part1Label:"Knights of Labor",part1:"<em>Knights:</em> Broad and inclusive — welcomed unskilled workers, women, Black workers; pursued political reform and the 8-hour day.",part2Label:"AFL",part2:"<em>AFL:</em> Exclusive skilled-trade union; focused on 'bread and butter' issues (wages, hours) through collective bargaining, not political revolution.",symbol:"\uD83D\uDD27",symbolCaption:"Workers united — but divided on strategy"},
+  {set:2,era:"Urbanization",title:"Booker T. Washington vs. W.E.B. Du Bois",emoji:"\uD83D\uDCDA",definition:"Two competing visions of Black progress: <em>Washington</em> (Atlanta Compromise, Tuskegee) urged vocational training while accepting temporary inequality; <em>Du Bois</em> demanded full civil rights and higher education immediately.",threeC:"Compare & Contrast",part1Label:"Washington's View",part1:"<em>Washington:</em> 'Cast down your bucket where you are' — focus on economic advancement through skilled trades before demanding political equality.",part2Label:"Du Bois's View",part2:"<em>Du Bois:</em> The 'Talented Tenth' must lead; compromise on civil rights was surrender — the NAACP (1909) embodied his activist vision.",symbol:"\u270D\uFE0F",symbolCaption:"Two paths to equality — one generation's debate"},
+  {set:2,era:"Immigration",title:"Chinese Exclusion Act (1882)",emoji:"\uD83D\uDEA2",definition:"The first U.S. law to <em>ban immigration based on race/nationality</em>, barring Chinese laborers from entering the country — reflecting nativist fears about cheap labor and racial 'otherness.'",threeC:"Continuity & Change",part1Label:"Continuity",part1:"<em>Continuity:</em> Anti-immigrant nativism continued from the Know-Nothing movement of the 1850s through the Chinese Exclusion Act and 1921/24 Quota Acts.",part2Label:"Change",part2:"<em>Change:</em> For the first time, exclusion was written into federal law by race — a legal precedent eventually reversed only in 1943 (Magnuson Act).",symbol:"\u26D4",symbolCaption:"The gate closed — on racial grounds"},
+  {set:2,era:"Progressive Era",title:"Muckrakers / Upton Sinclair / Ida Tarbell",emoji:"\uD83D\uDDDE\uFE0F",definition:"Investigative journalists who <em>exposed corruption, unsafe conditions, and monopoly power</em>. Sinclair's The Jungle revealed meatpacking horrors; Tarbell's investigation dismantled Standard Oil's public image.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Yellow journalism gave way to serious investigative reporting; mass-circulation magazines like McClure's published damning exposés.",part2Label:"Effect",part2:"<em>Effect:</em> Sparked public outrage driving real legislation — Pure Food & Drug Act (1906), Meat Inspection Act, and the breakup of Standard Oil.",symbol:"\uD83D\uDD0D",symbolCaption:"Shining light in dark corners"},
+  {set:2,era:"Progressive Era",title:"Progressive Amendments (16th-19th)",emoji:"\uD83D\uDCCB",definition:"Four constitutional amendments reshaping American democracy: <em>16th</em> (income tax), <em>17th</em> (direct election of senators), <em>18th</em> (Prohibition), <em>19th</em> (women's suffrage).",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Progressives demanded democratic accountability — wealthy senators bought by corporations, untaxed fortunes, and women excluded from civic life.",part2Label:"Effect",part2:"<em>Effect:</em> Fundamentally restructured federal power: government could now tax income directly and voters (including women) directly elected senators.",symbol:"\uD83D\uDDF3\uFE0F",symbolCaption:"Democracy deepened — four amendments"},
+  {set:2,era:"Progressive Era",title:"Theodore Roosevelt / The Square Deal",emoji:"\uD83E\uDD81",definition:"TR's domestic program promising <em>fair treatment for labor, consumers, and business</em> — embodied in trust-busting, railroad regulation, and conservation.",threeC:"Continuity & Change",part1Label:"Change",part1:"<em>Change:</em> TR broke from laissez-faire tradition — actively using federal power to bust monopolies (45 antitrust suits) and regulate railroads (Hepburn Act).",part2Label:"Continuity",part2:"<em>Continuity:</em> TR still favored capitalism and opposed radical socialism; he regulated, not eliminated, big business — preserving the existing economic system.",symbol:"\uD83D\uDC3B",symbolCaption:"The Teddy Bear — a symbol of 'square' power"},
+  {set:2,era:"Civil Rights",title:"Plessy v. Ferguson (1896)",emoji:"\uD83D\uDE83",definition:"Supreme Court ruling that <em>'separate but equal'</em> racial segregation was constitutional, upholding Louisiana's Separate Car Act and providing legal foundation for Jim Crow laws for 58 years.",threeC:"Continuity & Change",part1Label:"Continuity",part1:"<em>Continuity:</em> Continued the post-Reconstruction rollback of Black rights; endorsed the same racial hierarchy that Black Codes and violence had enforced.",part2Label:"Change",part2:"<em>Change:</em> Plessy constitutionalized segregation at the federal level — lasting until Brown v. Board overturned it in 1954.",symbol:"\u2696\uFE0F",symbolCaption:"Scales tipped — justice denied"},
+  {set:2,era:"Progressive Era",title:"Triangle Shirtwaist Fire (1911)",emoji:"\uD83D\uDD25",definition:"A fire at a New York City garment factory killed <em>146 workers</em>, mostly young immigrant women, who were trapped by locked exits — galvanizing the labor reform and women's rights movements.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> Factory owners locked exits to prevent theft and unauthorized breaks, trapping workers when fire broke out in the building's top floors.",part2Label:"Effect",part2:"<em>Effect:</em> Led directly to fire safety laws, factory inspection requirements, and labor legislation in New York — a turning point for worker protections nationwide.",symbol:"\uD83E\uDDF5",symbolCaption:"Threads of tragedy — fabric of reform"},
+  {set:2,era:"Populism",title:"William Jennings Bryan / Election of 1896",emoji:"\uD83C\uDF3D",definition:"Democratic/Populist presidential candidate whose <em>'Cross of Gold' speech</em> championed free silver coinage at a 16:1 ratio to inflate currency and help indebted farmers — defeated by William McKinley.",threeC:"Cause & Effect",part1Label:"Cause",part1:"<em>Cause:</em> The 1893 depression crushed farmers; tight gold-backed currency increased real debt burdens, fueling the Populist demand for inflationary silver coinage.",part2Label:"Effect",part2:"<em>Effect:</em> Bryan's defeat ended the Populist Party as a major force; many Populist reforms (income tax, direct democracy) were later adopted by Progressives.",symbol:"\uD83E\uDE99",symbolCaption:"Silver coin — the farmer's dream, unfulfilled"}
+];
+
+var current = 0;
+var flipped = false;
+var seen = new Set();
+var activeFilter = 'all';
+var visibleIndices = terms.map(function(_,i){return i;});
+
+function setFilter(filter, el) {
+  activeFilter = filter;
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');
+  if (filter === 'all') {
+    visibleIndices = terms.map(function(_,i){return i;});
+  } else {
+    visibleIndices = terms.map(function(t,i){return t.set===filter?i:-1;}).filter(function(i){return i>=0;});
+  }
+  current = visibleIndices[0];
+  flipped = false;
+  document.getElementById('flashcard').classList.remove('flipped');
+  render();
+}
+
+function render() {
+  var t = terms[current];
+  seen.add(current);
+  var posInVisible = visibleIndices.indexOf(current);
+  var visTotal = visibleIndices.length;
+
+  document.getElementById('termNumber').textContent = 'Term ' + String(current+1).padStart(2,'0');
+  document.getElementById('termEmoji').textContent = t.emoji;
+  document.getElementById('termTitle').textContent = t.title;
+  document.getElementById('backTitle').textContent = t.title;
+  document.getElementById('backEra').textContent = t.era;
+  document.getElementById('eraBadge').textContent = t.era;
+  document.getElementById('definition').innerHTML = t.definition;
+  document.getElementById('threeC1').innerHTML = t.part1;
+  document.getElementById('threeC2').innerHTML = t.part2;
+  document.getElementById('symbolEmoji').textContent = t.symbol;
+  document.getElementById('symbolCaption').textContent = t.symbolCaption;
+  document.getElementById('label3c1').textContent = t.threeC + ' — ' + t.part1Label;
+  document.getElementById('label3c2').textContent = t.threeC + ' — ' + t.part2Label;
+
+  var sb = document.getElementById('setBadge');
+  sb.textContent = 'Set ' + t.set;
+  sb.className = 'set-badge set' + t.set;
+
+  document.getElementById('counter').textContent = 'Card ' + (posInVisible+1) + ' of ' + visTotal;
+  document.getElementById('seenCount').textContent = seen.size + ' reviewed';
+  document.getElementById('progressBar').style.width = ((posInVisible+1)/visTotal*100) + '%';
+  document.getElementById('prevBtn').disabled = posInVisible <= 0;
+  document.getElementById('nextBtn').disabled = posInVisible >= visibleIndices.length - 1;
+
+  renderDots();
+}
+
+function flipCard() {
+  flipped = !flipped;
+  document.getElementById('flashcard').classList.toggle('flipped', flipped);
+}
+
+function changeCard(dir) {
+  var pos = visibleIndices.indexOf(current);
+  var newPos = pos + dir;
+  if (newPos < 0 || newPos >= visibleIndices.length) return;
+  current = visibleIndices[newPos];
+  flipped = false;
+  document.getElementById('flashcard').classList.remove('flipped');
+  render();
+}
+
+function renderDots() {
+  var container = document.getElementById('termDots');
+  container.innerHTML = '';
+  terms.forEach(function(t, i) {
+    var dot = document.createElement('div');
+    var inFilter = visibleIndices.indexOf(i) >= 0;
+    var cls = 'dot';
+    if (i === current) cls += ' active';
+    else if (seen.has(i)) cls += ' seen';
+    if (!inFilter) cls += ' hidden';
+    dot.className = cls;
+    dot.textContent = i + 1;
+    dot.title = t.title;
+    dot.onclick = (function(idx){
+      return function() {
+        if (visibleIndices.indexOf(idx) < 0) return;
+        current = idx;
+        flipped = false;
+        document.getElementById('flashcard').classList.remove('flipped');
+        render();
+      };
+    })(i);
+    container.appendChild(dot);
+  });
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight') changeCard(1);
+  else if (e.key === 'ArrowLeft') changeCard(-1);
+  else if (e.key === ' ') { e.preventDefault(); flipCard(); }
+});
+
+render();
+</script>
+</body>
+</html>
+
